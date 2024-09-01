@@ -57,3 +57,5 @@ group :test do
 end
 
 gem 'pg', '~> 1.5', '>= 1.5.7'
+
+gem "devise", "~> 4.9"
