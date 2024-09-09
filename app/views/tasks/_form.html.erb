@@ -1,0 +1,41 @@
+<%= form_with model: @task do |form| %>
+  <div class="mb-3">
+    <%= form.label :title, class:"form-label" %><br>
+    <%= form.text_field :title, class:"form-control" %>
+    <% @task.errors.full_messages_for(:title).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :description, class:"form-label" %><br>
+    <%= form.text_area :description, class:"form-control" %>
+    <% @task.errors.full_messages_for(:description).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  
+  <div class="mb-3">
+    <%= form.label :status, class:"form-label" %><br>
+    <%= form.select :status, [["Not Started","Not started"],["Doing","Doing"],["Done","Done"]], {}, {class: "form-select"} %>
+    <% @task.errors.full_messages_for(:status).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :due_date, class:"form-label" %><br>
+    <%= form.date_field :due_date, class:"date form-control" %>
+    <% @task.errors.full_messages_for(:due_date).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.number_field :user_id, id: :task_user_id, value: current_user.id, type: :hidden %><br>
+  </div>
+
+  <div>
+    <%= form.submit class:"btn btn-secondary" %>
+  </div>
+<% end %>

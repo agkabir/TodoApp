@@ -1,0 +1,30 @@
+<h1>Task Lists</h1>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">Status</th>
+      <th scope="col">Due Date</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tasks.each do |task| %>
+    <tr>
+      <th scope="row"><%= task.id %></th>
+      <td><%= link_to task.title, task %></td>
+      <td><%= task.description %></td>
+      <td><%= task.status %></td>
+      <td><%= task.due_date %></td>
+      <td><%= link_to "Show", task_path(task) %></td>
+      <td><%= link_to "Edit", edit_task_path(task) %></td>
+      <td><%= link_to "Destroy", task_path(task), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to 'Add Task', new_task_path, class:"btn btn-secondary" %>
